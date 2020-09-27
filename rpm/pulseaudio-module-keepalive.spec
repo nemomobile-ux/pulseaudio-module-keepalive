@@ -1,6 +1,6 @@
 %define pulseversion %{expand:%(rpm -q --qf '[%%{version}]' pulseaudio)}
-%define pulsemajorminor %{expand:%(echo '%{pulseversion}' | cut -d+ -f1)}
-%define moduleversion %{pulsemajorminor}.%{expand:%(echo '%{version}' | cut -d. -f3)}
+%define pulsemajorminor %{expand:%(echo '%{pulseversion}' | cut -d. -f1-2)}
+%define moduleversion %{pulsemajorminor}.%{expand:%(echo '%{version}' | awk -F. '{print $3}')}
 
 Name:       pulseaudio-module-keepalive
 Summary:    PulseAudio keepalive module
